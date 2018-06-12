@@ -2,19 +2,21 @@
   become: true
   gather_facts: false
   pre_tasks:
+
   - name: Install python2 for Ansible
     raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
     register: output
     changed_when: output.stdout != ""
 
-  tast:
+  task:
+
   - name: Install required packages
-  apt: name={{ item }} update_cache=yes state=installed force=yes
-  with_items:
-    - apt-transport-https
-    - ca-certificates
-    - openssl
-    - python-pip
+    apt: name={{ item }} update_cache=yes state=installed force=yes
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      - openssl
+      - python-pip
 
   - name: Add repo key
     apt_key:
