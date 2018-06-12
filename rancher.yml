@@ -1,6 +1,6 @@
 - hosts: localhost
   become: true
-  gather_facts: false
+  gather_facts: yes
   pre_tasks:
     - name: Install python2 for Ansible
       raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
